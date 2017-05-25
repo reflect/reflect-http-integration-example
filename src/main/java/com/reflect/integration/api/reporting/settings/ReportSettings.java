@@ -2,6 +2,7 @@ package com.reflect.integration.api.reporting.settings;
 
 import java.util.List;
 
+import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.reflect.integration.api.reporting.settings.serialization.DimensionDeserializer;
@@ -17,6 +18,12 @@ public class ReportSettings {
 	private List<Filter> filters;
 	
 	private SortConfiguration sort;
+	
+	public ReportSettings() {
+		this.dimensions = Lists.newArrayList();
+		this.metrics = Lists.newArrayList();
+		this.filters = Lists.newArrayList();
+	}
 	
 	public List<Dimension> getDimensions() {
 		return dimensions;
@@ -34,17 +41,6 @@ public class ReportSettings {
 		this.metrics = metrics;
 	}
 	
-	public static ReportSettings fromJson(String json) {
-		GsonBuilder builder = new GsonBuilder();
-		builder.registerTypeAdapter(Metric.class, new MetricDeserializer());
-		builder.registerTypeAdapter(Dimension.class, new DimensionDeserializer());
-		builder.registerTypeAdapter(Filter.class, new FilterDeserializer());
-		builder.registerTypeAdapter(SortConfiguration.class, new SortConfigurationDeserializer());
-		
-		Gson gson = builder.create();
-		return gson.fromJson(json, ReportSettings.class);
-	}
-
 	public List<Filter> getFilters() {
 		return filters;
 	}
@@ -59,5 +55,20 @@ public class ReportSettings {
 
 	public void setSort(SortConfiguration configuration) {
 		this.sort = configuration;
+	}
+	
+	public boolean hasSort() {
+		return this.sort != null;
+	}
+	
+	public static ReportSettings fromJson(String json) {
+		GsonBuilder builder = new GsonBuilder();
+		builder.registerTypeAdapter(Metric.class, new MetricDeserializer());
+		builder.registerTypeAdapter(Dimension.class, new DimensionDeserializer());
+		builder.registerTypeAdapter(Filter.class, new FilterDeserializer());
+		builder.registerTypeAdapter(SortConfiguration.class, new SortConfigurationDeserializer());
+		
+		Gson gson = builder.create();
+		return gson.fromJson(json, ReportSettings.class);
 	}
 }

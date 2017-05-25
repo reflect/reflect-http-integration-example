@@ -3,15 +3,15 @@ package com.reflect.integration.api.reporting;
 import com.reflect.integration.api.reporting.results.Report;
 
 public abstract class ReportRunner {
-	private StatementCompiler compiler;
+	private Statement statement;
 	
-	public ReportRunner(StatementCompiler compiler) {
-		this.compiler = compiler;
+	public ReportRunner(Statement statement) {
+		this.statement = statement;
 	}
 	
-	public StatementCompiler getCompiler() {
-		return this.compiler;
+	protected Statement getStatement() {
+		return this.statement;
 	}
 	
-	public abstract Report runReport();
+	public abstract Report runReport() throws InvalidStatementException;
 }

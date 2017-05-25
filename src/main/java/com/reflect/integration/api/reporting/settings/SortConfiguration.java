@@ -1,5 +1,7 @@
 package com.reflect.integration.api.reporting.settings;
 
+import com.google.gson.annotations.SerializedName;
+
 public class SortConfiguration {
 	private Direction direction;
 	private Field field;
@@ -26,13 +28,20 @@ public class SortConfiguration {
 	}
 	
 	public enum Direction {
+		@SerializedName("ascending")
 		ASCENDING("ascending"),
+		
+		@SerializedName("descending")
 		DESCENDING("descending");
 		
 		private final String id;
 		
 		Direction(String id) {
 			this.id = id;
+		}
+		
+		public String toString() {
+			return this.id;
 		}
 	}
 }

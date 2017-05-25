@@ -19,4 +19,8 @@ public class Field {
 		// TODO: Translate the field name to the actual column name.
 		return this.name;
 	}
+	
+	public String getAlias() {
+		return this.getName();
+	}
 }

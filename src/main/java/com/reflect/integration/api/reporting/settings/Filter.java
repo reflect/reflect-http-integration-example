@@ -10,6 +10,18 @@ public class Filter {
 		this.operation = operation;
 		this.value = value;
 	}
+	
+	public Field getField() {
+		return this.field;
+	}
+	
+	public FilterOperation getOperation() {
+		return this.operation;
+	}
+	
+	public String getValue() {
+		return this.value;
+	}
 
 	public enum FilterOperation {
 		EQUALS("="),
@@ -24,6 +36,10 @@ public class Filter {
 		
 		FilterOperation(String id) {
 			this.id = id;
+		}
+		
+		public String toString() {
+			return this.id;
 		}
 	}
 }
