@@ -1,5 +1,7 @@
 package com.reflect.integration.api.reporting.settings;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Filter {
 	private Field field;
 	private FilterOperation operation;
@@ -24,13 +26,26 @@ public class Filter {
 	}
 
 	public enum FilterOperation {
+		@SerializedName("=")
 		EQUALS("="),
+		
+		@SerializedName("!=")
 		NOT_EQUALS("!="),
+		
+		@SerializedName(">")
 		GREATER_THAN(">"),
+		
+		@SerializedName(">=")
 		GREATER_THAN_OR_EQUAL_TO(">="),
+		
+		@SerializedName("<")
 		LESS_THAN("<"),
+		
+		@SerializedName("<=")
 		LESS_THAN_OR_EQUAL_TO("<="),
-		CONTAINS("=!");
+		
+		@SerializedName("=~")
+		CONTAINS("=~");
 		
 		private final String id;
 		

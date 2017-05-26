@@ -9,6 +9,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.reflect.integration.api.reporting.settings.Field;
 import com.reflect.integration.api.reporting.settings.Filter;
+import com.reflect.integration.api.reporting.settings.SortConfiguration;
 
 public class FilterDeserializer  implements JsonDeserializer<Filter> {
 
@@ -19,7 +20,7 @@ public class FilterDeserializer  implements JsonDeserializer<Filter> {
 		
 		return new Filter(
 			new Field(obj.get("field").getAsString()),
-			Filter.FilterOperation.valueOf(obj.get("op").getAsString()),
+			context.deserialize(obj.get("op"), Filter.FilterOperation.class),
 			obj.get("value").getAsString()
 		);
 	}
