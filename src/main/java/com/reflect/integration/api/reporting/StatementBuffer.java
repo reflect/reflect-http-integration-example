@@ -89,6 +89,8 @@ public class StatementBuffer {
 			return;
 		}
 		
+		buffer.append(" WHERE ");
+		
 		for (int i = 0; i < size; i++) {
 			Condition c = conditions.get(i);
 			buffer.append(c.column);
